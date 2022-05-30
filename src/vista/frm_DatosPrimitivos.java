@@ -69,6 +69,8 @@ public class frm_DatosPrimitivos<E> extends javax.swing.JDialog {
         btnGuardarListaEnlazada = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         btnCrearListdeJava = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtMensajeConsola = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -195,10 +197,17 @@ public class frm_DatosPrimitivos<E> extends javax.swing.JDialog {
         jPanel1.add(btnCrearListdeJava);
         btnCrearListdeJava.setBounds(610, 190, 170, 30);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 830, 560);
+        txtMensajeConsola.setColumns(20);
+        txtMensajeConsola.setRows(5);
+        jScrollPane2.setViewportView(txtMensajeConsola);
 
-        setSize(new java.awt.Dimension(845, 569));
+        jPanel1.add(jScrollPane2);
+        jScrollPane2.setBounds(10, 480, 800, 86);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 830, 580);
+
+        setSize(new java.awt.Dimension(845, 592));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -364,6 +373,7 @@ public class frm_DatosPrimitivos<E> extends javax.swing.JDialog {
             case 0:
                 
                 c.guardarDatoArregloByte(arregloByte(), cbxTipoDato.getSelectedItem().toString());
+                
                 break;
             case 1:
                 c.guardarDatoArregloShort(arregloShort(), cbxTipoDato.getSelectedItem().toString());
@@ -395,15 +405,17 @@ public class frm_DatosPrimitivos<E> extends javax.swing.JDialog {
     }
     
     public void guardarListaEnlazada() {
-        
-        c.guardarListaEnlazada(crearListaEnlazada(), cbxTipoDato.getSelectedItem().toString());
+        ListaEnlazadaServices<E> listado = crearListaEnlazada();
+        c.guardarListaEnlazada(listado, cbxTipoDato.getSelectedItem().toString());
+        txtMensajeConsola.setText(String.valueOf(c.mensajeListaEnlazada(listado, cbxTipoDato.getSelectedItem().toString())));
         
     }
 
     public void guardarListDeJava() {
+        List lista = crearListaJava();
         
-        c.guardarListadeJava(crearListaJava());
-        
+        c.guardarListadeJava(lista);
+        txtMensajeConsola.setText(String.valueOf(c.mensajeList(lista)));
     }
 //byte, short, int, float, double, boolean, String, long, char
 
@@ -582,6 +594,7 @@ public class frm_DatosPrimitivos<E> extends javax.swing.JDialog {
             size = 0;
             lista = new ListaEnlazadaServices<>(size);
         }
+
         return lista;
     }
     
@@ -659,8 +672,10 @@ public class frm_DatosPrimitivos<E> extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblDP;
     private javax.swing.JTextField txtDatoIng;
+    private javax.swing.JTextArea txtMensajeConsola;
     private javax.swing.JTextField txtSizeArray;
     private javax.swing.JTextField txtSizeList;
     // End of variables declaration//GEN-END:variables

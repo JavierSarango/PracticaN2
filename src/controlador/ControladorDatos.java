@@ -249,11 +249,11 @@ public class ControladorDatos<E> {
         System.out.println("Arreglo de tipo " + tipo);
 
         System.out.println("Tamaño en memoria: " + MemoryUtil.deepSizeOf(var) + " bits");
-
+       
     }
 
     public void guardarListaEnlazada(ListaEnlazadaServices<E> lista, String tipo) {
-        
+
         TipodeDatos nuevo = new TipodeDatos(lista);
         nuevo.setTipo(tipo);
         nuevo.setValor(lista.getLista());
@@ -261,7 +261,7 @@ public class ControladorDatos<E> {
         nuevo.setUnidadMedida("bits");
         datos = nuevo;
 //        listaDatos.insertarAlFinal(nuevo);
-        System.out.print("ListaEnlazada de tipo " + tipo+" || ");
+        System.out.print("ListaEnlazada de tipo " + tipo + " || ");
         System.out.println("Tamaño en memoria ListaEnlazada: " + MemoryUtil.deepSizeOf(lista) + " bits");
 
     }
@@ -270,7 +270,7 @@ public class ControladorDatos<E> {
         TipodeDatos nuevo = new TipodeDatos(listado);
         nuevo.setTipo("No tiene tipo definido");
         for (int i = 0; i < listado.size(); i++) {
-            nuevo.setValor(listado.get(i));            
+            nuevo.setValor(listado.get(i));
         }
 
         nuevo.setValorMedido(MemoryUtil.deepSizeOf(listado));
@@ -280,6 +280,19 @@ public class ControladorDatos<E> {
         System.out.print("Lista de Java || ");
         System.out.println("Tamaño en memoria List: " + MemoryUtil.deepSizeOf(listado) + " bits");
 
+    }
+
+    public String mensajeListaEnlazada(ListaEnlazadaServices<E> lista, String tipo) {
+        String cadena1 = "ListaEnlazada de tipo: " + tipo +" || ";
+        String cadena2 = "Tamaño en Memoria ListaEnlazada " + MemoryUtil.deepSizeOf(lista) + " bits";
+        String cadenaFinal = cadena1.concat(cadena2);
+        return cadenaFinal;
+    }
+      public String mensajeList(List lista) {
+        String cadena1 = "List de Java || ";
+        String cadena2 = "Tamaño en Memoria List " + MemoryUtil.deepSizeOf(lista) + " bits";
+        String cadenaFinal = cadena1.concat(cadena2);
+        return cadenaFinal;
     }
 //
 //    public static void main(String[] args) {

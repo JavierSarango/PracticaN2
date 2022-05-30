@@ -294,37 +294,5 @@ public class ControladorDatos<E> {
         String cadenaFinal = cadena1.concat(cadena2);
         return cadenaFinal;
     }
-//
-//    public static void main(String[] args) {
-//        ControladorDatos cdp = new ControladorDatos();
-//        ListaEnlazadaServices<Integer> lista;
-//        
-//        List lis = new ArrayList();
-////        System.out.println("***************Lista Enlazada declarada ***************");
-////        lista = new ListaEnlazadaServices<>();
-////        cdp.guardarListaEnlazada(lista, "Integer");
-////        System.out.println(MemoryUtil.deepSizeOf(cdp.getDatos().getListaEnlazada()));
-//        System.out.println("***************Lista Enlazada Inicializada con tamaño ***************");
-//        lista = new ListaEnlazadaServices<>();
-//        System.out.println(lista.getSize());
-//        cdp.guardarListaEnlazada(lista, "Integer");
-//        System.out.println(MemoryUtil.deepSizeOf(cdp.getDatos().getListaEnlazada()));
-////        System.out.println("***************Lista Enlazada Inicializada con valores ***************");
-////        lista.insertar(2, 0);
-////        cdp.guardarListaEnlazada(lista, "Integer");
-////        System.out.println(MemoryUtil.deepSizeOf(cdp.getDatos().getListaEnlazada()));
-////
-////        System.out.println("***************Lista de Java declarada ***************");
-////        cdp.guardarListadeJava(lis);
-////        System.out.println(MemoryUtil.deepSizeOf(cdp.getDatos().getListadeJava()));
-////        System.out.println("***************Lista Enlazada Inicializada con valores ***************");
-////        lis.add(2);
-////        lis.add(1);
-////        lis.add("Macario");
-////        lis.add("9232131");
-////        cdp.guardarListadeJava(lis);
-////        System.out.println(MemoryUtil.deepSizeOf(cdp.getDatos().getListadeJava()));
-//
-//    }
 
 }

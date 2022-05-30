@@ -5,17 +5,18 @@
 package vista;
 
 import controlador.ControladorDatos;
-import java.awt.Color;
+import controlador.tda.lista.ListaEnlazadaServices;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import vista.ModeloTabla.ModeloTablaDatos;
 
 /**
  *
  * @author Gigabyte
  */
-public class frm_DatosPrimitivos extends javax.swing.JDialog {
-
+public class frm_DatosPrimitivos<E> extends javax.swing.JDialog {
+    
     private ControladorDatos c = new ControladorDatos();
     private ModeloTablaDatos mt = new ModeloTablaDatos();
 
@@ -24,16 +25,17 @@ public class frm_DatosPrimitivos extends javax.swing.JDialog {
      */
     public frm_DatosPrimitivos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-
+        
         initComponents();
-
+        
         limpiar();
-
+        
     }
-
+    
     public void limpiar() {
-        txtDatoIng.setText("");
-        txtTamanioArreglo.setText("1");        
+        txtDatoIng.setText("1");
+        txtSizeArray.setText("1");
+        txtSizeList.setText("0");
         c.setDatos(null);
         CargarTabla();
     }
@@ -56,11 +58,17 @@ public class frm_DatosPrimitivos extends javax.swing.JDialog {
         tblDP = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        txtTamanioArreglo = new javax.swing.JTextField();
+        txtSizeArray = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         cbxTipoDato = new javax.swing.JComboBox<>();
         btnIngresar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnCrearArreglo = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        txtSizeList = new javax.swing.JTextField();
+        btnGuardarListaEnlazada = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        btnCrearListdeJava = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -72,12 +80,12 @@ public class frm_DatosPrimitivos extends javax.swing.JDialog {
 
         jLabel1.setText("Dato:");
         jPanel2.add(jLabel1);
-        jLabel1.setBounds(10, 30, 50, 20);
+        jLabel1.setBounds(20, 20, 50, 20);
         jPanel2.add(txtDatoIng);
-        txtDatoIng.setBounds(70, 30, 120, 30);
+        txtDatoIng.setBounds(20, 40, 130, 30);
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(10, 10, 210, 80);
+        jPanel2.setBounds(10, 90, 170, 90);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Resumen de Datos"));
 
@@ -100,62 +108,97 @@ public class frm_DatosPrimitivos extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
                 .addGap(14, 14, 14))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(10, 150, 740, 310);
+        jPanel3.setBounds(10, 230, 810, 240);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Creacion de Arreglos"));
         jPanel4.setLayout(null);
 
         jLabel3.setText("Tamaño:");
         jPanel4.add(jLabel3);
-        jLabel3.setBounds(10, 26, 60, 30);
-        jPanel4.add(txtTamanioArreglo);
-        txtTamanioArreglo.setBounds(90, 30, 110, 30);
+        jLabel3.setBounds(10, 20, 60, 20);
+        jPanel4.add(txtSizeArray);
+        txtSizeArray.setBounds(20, 40, 130, 30);
 
         jPanel1.add(jPanel4);
-        jPanel4.setBounds(230, 10, 210, 80);
+        jPanel4.setBounds(190, 90, 200, 90);
 
         jLabel2.setText("Tipo de Dato");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(457, 20, 90, 30);
+        jLabel2.setBounds(20, 50, 90, 30);
 
         cbxTipoDato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "byte", "short", "int", "float", "double", "boolean", "String", "long", "char" }));
         jPanel1.add(cbxTipoDato);
-        cbxTipoDato.setBounds(570, 20, 140, 30);
+        cbxTipoDato.setBounds(110, 50, 140, 30);
 
-        btnIngresar.setText("Ingresar");
+        btnIngresar.setText("Crear Dato");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarActionPerformed(evt);
             }
         });
         jPanel1.add(btnIngresar);
-        btnIngresar.setBounds(30, 100, 130, 30);
+        btnIngresar.setBounds(20, 190, 150, 30);
 
-        jButton1.setText("Crear");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCrearArreglo.setText("Crear Arreglo");
+        btnCrearArreglo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCrearArregloActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(280, 100, 90, 30);
+        jPanel1.add(btnCrearArreglo);
+        btnCrearArreglo.setBounds(220, 190, 140, 30);
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Creacion de Objetos Lista"));
+        jPanel5.setLayout(null);
+
+        jLabel4.setText("Tamaño:");
+        jPanel5.add(jLabel4);
+        jLabel4.setBounds(10, 20, 60, 16);
+        jPanel5.add(txtSizeList);
+        txtSizeList.setBounds(20, 40, 124, 30);
+
+        jPanel1.add(jPanel5);
+        jPanel5.setBounds(410, 90, 190, 90);
+
+        btnGuardarListaEnlazada.setText("Crear ListaEnlazada");
+        btnGuardarListaEnlazada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarListaEnlazadaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGuardarListaEnlazada);
+        btnGuardarListaEnlazada.setBounds(440, 190, 150, 30);
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setText("Medida de Memoria de Datos y Objetos");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(270, 10, 280, 20);
+
+        btnCrearListdeJava.setText("Crear List de Java");
+        btnCrearListdeJava.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearListdeJavaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCrearListdeJava);
+        btnCrearListdeJava.setBounds(610, 190, 170, 30);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 761, 460);
+        jPanel1.setBounds(0, 0, 830, 560);
 
-        setSize(new java.awt.Dimension(777, 513));
+        setSize(new java.awt.Dimension(845, 569));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -164,67 +207,162 @@ public class frm_DatosPrimitivos extends javax.swing.JDialog {
         guardar();
     }//GEN-LAST:event_btnIngresarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCrearArregloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearArregloActionPerformed
         // TODO add your handling code here:
         guardarArreglo();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCrearArregloActionPerformed
 
+    private void btnGuardarListaEnlazadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarListaEnlazadaActionPerformed
+        // TODO add your handling code here:
+        guardarListaEnlazada();
+    }//GEN-LAST:event_btnGuardarListaEnlazadaActionPerformed
+
+    private void btnCrearListdeJavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearListdeJavaActionPerformed
+        // TODO add your handling code here:
+        guardarListDeJava();
+    }//GEN-LAST:event_btnCrearListdeJavaActionPerformed
+    
     public void CargarTabla() {
         mt.setLista(c.getListaDatos().getLista());
         tblDP.setModel(mt);
         tblDP.updateUI();
-
+        
     }
-
+    
     public String cadena() {
         String trim = "";
         if (!txtDatoIng.getText().trim().isEmpty()) {
             trim = txtDatoIng.getText().trim();
         }
         return trim;
-
+        
     }
-
+    
     public void guardar() {
-
+        
         switch (cbxTipoDato.getSelectedIndex()) {
             case 0:
-                c.guardarDatoByte(Byte.parseByte(txtDatoIng.getText().trim()));
-                break;
+                    try {
+                if (!txtDatoIng.getText().trim().isEmpty()) {
+                    c.guardarDatoByte(Byte.parseByte(txtDatoIng.getText().trim()));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Se debe inicializar el dato. Dato se inicializará en 1", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+                    
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ingrese un dato valido", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+//                limpiar();
+            }
+            
+            break;
             case 1:
-                c.guardarDatoShort(Short.parseShort(txtDatoIng.getText().trim()));
-                break;
+                    try {
+                if (!txtDatoIng.getText().trim().isEmpty()) {
+                    c.guardarDatoShort(Short.parseShort(txtDatoIng.getText().trim()));
+                } else {
+                    
+                    JOptionPane.showMessageDialog(null, "Se debe inicializar el dato. Dato se inicializará en 1", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ingrese un dato valido", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+            break;
             case 2:
-                c.guardarDatoInt(Integer.parseInt(txtDatoIng.getText().trim()));
-                break;
+                    try {
+                if (!txtDatoIng.getText().trim().isEmpty()) {
+                    c.guardarDatoInt(Integer.parseInt(txtDatoIng.getText().trim()));
+                } else {
+                    
+                    JOptionPane.showMessageDialog(null, "Se debe inicializar el dato. Dato se inicializará en 1", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ingrese un dato valido", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+            break;
             case 3:
-                c.guardarDatofloat(Float.parseFloat(txtDatoIng.getText().trim()));
-                break;
+                    try {
+                if (!txtDatoIng.getText().trim().isEmpty()) {
+                    c.guardarDatofloat(Float.parseFloat(txtDatoIng.getText().trim()));
+                } else {
+                    
+                    JOptionPane.showMessageDialog(null, "Se debe inicializar el dato. Dato se inicializará en 1", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+                }
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ingrese un dato valido", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+            break;
             case 4:
-                c.guardarDatoDouble(Double.parseDouble(txtDatoIng.getText().trim()));
-                break;
+                    try {
+                if (!txtDatoIng.getText().trim().isEmpty()) {
+                    c.guardarDatoDouble(Double.parseDouble(txtDatoIng.getText().trim()));
+                } else {
+                    
+                    JOptionPane.showMessageDialog(null, "Se debe inicializar el dato. Dato se inicializará en 1", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ingrese un dato valido", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+            break;
             case 5:
-                c.guardarDatoBoolean(Boolean.parseBoolean(txtDatoIng.getText().trim()));
-                break;
+                    try {
+                if (!txtDatoIng.getText().trim().isEmpty()) {
+                    c.guardarDatoBoolean(Boolean.parseBoolean(txtDatoIng.getText().trim()));
+                    
+                } else {
+                    
+                    JOptionPane.showMessageDialog(null, "Se debe inicializar el dato. Dato se inicializará en 1", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ingrese un dato valido", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+            break;
             case 6:
                 c.guardarDatoString(cadena());
                 break;
             case 7:
-                c.guardarDatoLong(Long.parseLong(txtDatoIng.getText().trim()));
-                break;
+              try {
+                if (!txtDatoIng.getText().trim().isEmpty()) {
+                    c.guardarDatoLong(Long.parseLong(txtDatoIng.getText().trim()));
+                } else {
+                    
+                    JOptionPane.showMessageDialog(null, "Se debe inicializar el dato. Dato se inicializará en 1", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+                    
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ingrese un dato valido", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+            break;
             case 8:
-                c.guardarDatoChar(txtDatoIng.getText().trim().charAt(WIDTH));
-                break;
-
+                
+                try {
+                if (!txtDatoIng.getText().trim().isEmpty()) {
+                    c.guardarDatoChar(txtDatoIng.getText().trim().charAt(WIDTH));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ingrese un dato valido", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+                    
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Datos de tipo char van entre '" + " '", "Consejo", JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+            break;
+            
         }
         limpiar();
     }
-
+    
     public void guardarArreglo() {
-
+        
         switch (cbxTipoDato.getSelectedIndex()) {
             case 0:
-
+                
                 c.guardarDatoArregloByte(arregloByte(), cbxTipoDato.getSelectedItem().toString());
                 break;
             case 1:
@@ -251,17 +389,29 @@ public class frm_DatosPrimitivos extends javax.swing.JDialog {
             case 8:
                 c.guardarDatoArregloChar(arregloChar(), cbxTipoDato.getSelectedItem().toString());
                 break;
-
+            
         }
         limpiar();
     }
+    
+    public void guardarListaEnlazada() {
+        
+        c.guardarListaEnlazada(crearListaEnlazada(), cbxTipoDato.getSelectedItem().toString());
+        
+    }
 
+    public void guardarListDeJava() {
+        
+        c.guardarListadeJava(crearListaJava());
+        
+    }
 //byte, short, int, float, double, boolean, String, long, char
-    public byte[] arregloByte() {
-        int size = Integer.parseInt(txtTamanioArreglo.getText().trim());
-        byte[] arreglo;
 
-        if (txtTamanioArreglo.getText().trim().isEmpty()) {
+    public byte[] arregloByte() {
+        int size = Integer.parseInt(txtSizeArray.getText().trim());
+        byte[] arreglo;
+        
+        if (txtSizeArray.getText().trim().isEmpty()) {
             arreglo = new byte[1];
         } else {
             arreglo = new byte[size];
@@ -272,12 +422,13 @@ public class frm_DatosPrimitivos extends javax.swing.JDialog {
         }
         return arreglo;
     }
-
+    
     public short[] arregloShort() {
-        int size = Integer.parseInt(txtTamanioArreglo.getText().trim());
+        int size = Integer.parseInt(txtSizeArray.getText().trim());
         short[] arreglo;
-
-        if (txtTamanioArreglo.getText().trim().isEmpty()) {
+        
+        if (txtSizeArray.getText().trim().isEmpty()) {
+            
             arreglo = new short[1];
         } else {
             arreglo = new short[size];
@@ -288,12 +439,12 @@ public class frm_DatosPrimitivos extends javax.swing.JDialog {
         }
         return arreglo;
     }
-
+    
     public int[] arregloInt() {
-        int size = Integer.parseInt(txtTamanioArreglo.getText().trim());
+        int size = Integer.parseInt(txtSizeArray.getText().trim());
         int[] arreglo;
-
-        if (txtTamanioArreglo.getText().trim().isEmpty()) {
+        
+        if (txtSizeArray.getText().trim().isEmpty()) {
             arreglo = new int[1];
         } else {
             arreglo = new int[size];
@@ -304,12 +455,12 @@ public class frm_DatosPrimitivos extends javax.swing.JDialog {
         }
         return arreglo;
     }
-
+    
     public float[] arregloFloat() {
-        int size = Integer.parseInt(txtTamanioArreglo.getText().trim());
+        int size = Integer.parseInt(txtSizeArray.getText().trim());
         float[] arreglo;
-
-        if (txtTamanioArreglo.getText().trim().isEmpty()) {
+        
+        if (txtSizeArray.getText().trim().isEmpty()) {
             arreglo = new float[1];
         } else {
             arreglo = new float[size];
@@ -320,12 +471,12 @@ public class frm_DatosPrimitivos extends javax.swing.JDialog {
         }
         return arreglo;
     }
-
+    
     public double[] arregloDouble() {
-        int size = Integer.parseInt(txtTamanioArreglo.getText().trim());
+        int size = Integer.parseInt(txtSizeArray.getText().trim());
         double[] arreglo;
-
-        if (txtTamanioArreglo.getText().trim().isEmpty()) {
+        
+        if (txtSizeArray.getText().trim().isEmpty()) {
             arreglo = new double[1];
         } else {
             arreglo = new double[size];
@@ -336,16 +487,16 @@ public class frm_DatosPrimitivos extends javax.swing.JDialog {
         }
         return arreglo;
     }
-
+    
     public String[] arregloString() {
-        int size = Integer.parseInt(txtTamanioArreglo.getText().trim());
+        int size = Integer.parseInt(txtSizeArray.getText().trim());
         String[] arreglo;
-
-        if (txtTamanioArreglo.getText().trim().isEmpty()) {
+        
+        if (txtSizeArray.getText().trim().isEmpty()) {
             arreglo = new String[1];
         } else {
             arreglo = new String[size];
-
+            
             for (int i = 0; i < arreglo.length; i++) {
                 String dato = JOptionPane.showInputDialog("Dato en la posicion [" + (i + 1) + "]");
                 arreglo[i] = dato;
@@ -353,62 +504,100 @@ public class frm_DatosPrimitivos extends javax.swing.JDialog {
         }
         return arreglo;
     }
-
+    
     public boolean[] arregloBoolean() {
-        int size = Integer.parseInt(txtTamanioArreglo.getText().trim());
+        int size = Integer.parseInt(txtSizeArray.getText().trim());
         boolean[] arreglo;
-
-        if (txtTamanioArreglo.getText().trim().isEmpty()) {
+        
+        if (txtSizeArray.getText().trim().isEmpty()) {
             arreglo = new boolean[1];
         } else {
             arreglo = new boolean[size];
             boolean dato = true;
-
+            
             for (int i = 0; i < arreglo.length; i++) {
                 if (dato == true) {
-
+                    
                     arreglo[i] = dato;
                     dato = false;
                 } else if (dato == false) {
                     arreglo[i] = dato;
                     dato = true;
                 }
-
+                
             }
         }
         return arreglo;
     }
-
+    
     public long[] arregloLong() {
-        int size = Integer.parseInt(txtTamanioArreglo.getText().trim());
+        int size = Integer.parseInt(txtSizeArray.getText().trim());
         long[] arreglo;
-
-        if (txtTamanioArreglo.getText().trim().isEmpty()) {
+        
+        if (txtSizeArray.getText().trim().isEmpty()) {
             arreglo = new long[1];
         } else {
             arreglo = new long[size];
             for (int i = 0; i < arreglo.length; i++) {
-                long dato = Long.parseLong(JOptionPane.showInputDialog("Dato en la posicion [" + i + 1 + "]"));
+                long dato = Long.parseLong(JOptionPane.showInputDialog("Dato en la posicion [" + (i + 1) + "]"));
                 arreglo[i] = dato;
             }
         }
         return arreglo;
     }
-
+    
     public char[] arregloChar() {
-        int size = Integer.parseInt(txtTamanioArreglo.getText().trim());
+        int size = Integer.parseInt(txtSizeArray.getText().trim());
         char[] arreglo;
-
-        if (txtTamanioArreglo.getText().trim().isEmpty()) {
+        
+        if (txtSizeArray.getText().trim().isEmpty()) {
             arreglo = new char[1];
         } else {
             arreglo = new char[size];
             for (int i = 0; i < arreglo.length; i++) {
-                char dato = JOptionPane.showInputDialog("Dato en la posicion [" + i + 1 + "]").charAt(i);
+                char dato = JOptionPane.showInputDialog("Dato en la posicion [" + (i + 1) + "]").charAt(i);
                 arreglo[i] = dato;
             }
         }
         return arreglo;
+    }
+//    Crear lista Enlazada
+
+    public ListaEnlazadaServices<E> crearListaEnlazada() {
+        
+        int size = Integer.parseInt(txtSizeList.getText().trim());
+        
+        ListaEnlazadaServices<E> lista;
+        E dato = null;
+        
+        if (!txtSizeList.getText().trim().isEmpty()) {
+            lista = new ListaEnlazadaServices<>(size);
+            
+            for (int i = 0; i < size; i++) {
+                dato = (E) JOptionPane.showInputDialog("Dato [" + (i + 1) + "]");
+                lista.insertar(dato, i);
+            }
+            
+        } else {
+            size = 0;
+            lista = new ListaEnlazadaServices<>(size);
+        }
+        return lista;
+    }
+    
+    public List crearListaJava() {
+        int size = Integer.parseInt(txtSizeList.getText().trim());
+        List listaJava;
+        if (txtSizeList.getText().trim().isEmpty()) {
+            listaJava = new ArrayList();
+        } else {
+            listaJava = new ArrayList(size);
+            for (int i = 0; i < size; i++) {
+                Object dato = JOptionPane.showInputDialog("Dato [" + (i + 1) + "]");
+                listaJava.add(dato);
+            }
+        }
+        return listaJava;
     }
 
     /**
@@ -454,19 +643,25 @@ public class frm_DatosPrimitivos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCrearArreglo;
+    private javax.swing.JButton btnCrearListdeJava;
+    private javax.swing.JButton btnGuardarListaEnlazada;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JComboBox<String> cbxTipoDato;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblDP;
     private javax.swing.JTextField txtDatoIng;
-    private javax.swing.JTextField txtTamanioArreglo;
+    private javax.swing.JTextField txtSizeArray;
+    private javax.swing.JTextField txtSizeList;
     // End of variables declaration//GEN-END:variables
 }

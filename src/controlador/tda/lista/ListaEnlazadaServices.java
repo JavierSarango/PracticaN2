@@ -33,6 +33,10 @@ public class ListaEnlazadaServices <E> {
     public ListaEnlazadaServices() {
         this.lista = new ListaEnlazada<>();
     }
+
+    public ListaEnlazadaServices(Integer size) {
+        this.lista = new ListaEnlazada<>(size);
+    }
     
     public Boolean insertarAlInicio(E dato) {       
             lista.insertarCabecera(dato);

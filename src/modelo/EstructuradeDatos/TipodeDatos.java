@@ -5,6 +5,7 @@
 package modelo.EstructuradeDatos;
 
 import controlador.tda.lista.ListaEnlazada;
+import controlador.tda.lista.ListaEnlazadaServices;
 import java.util.List;
 
 /**
@@ -42,7 +43,7 @@ public class TipodeDatos<E> {
     private char[] arreglo_char;
     
 //Objetos lista
-    private ListaEnlazada<E> listaEnlazada;
+    private ListaEnlazadaServices<E> listaEnlazada;
     private List listadeJava;
 
     //Getters and Setters de los tipos de Datos
@@ -192,11 +193,11 @@ public class TipodeDatos<E> {
     }  
  
 //getters and setters Objetos lista
-    public ListaEnlazada<E> getListaEnlazada() {
+    public ListaEnlazadaServices<E> getListaEnlazada() {
         return listaEnlazada;
     }
 
-    public void setListaEnlazada(ListaEnlazada<E> listaEnlazada) {
+    public void setListaEnlazada(ListaEnlazadaServices<E> listaEnlazada) {
         this.listaEnlazada = listaEnlazada;
     }
 
@@ -313,11 +314,11 @@ public class TipodeDatos<E> {
     public TipodeDatos(char[] arreglo_char) {
         this.arreglo_char = arreglo_char;
     }
-        
 
-    public TipodeDatos(ListaEnlazada<E> listaEnlazada) {
+    public TipodeDatos(ListaEnlazadaServices<E> listaEnlazada) {
         this.listaEnlazada = listaEnlazada;
     }
+         
 
     public TipodeDatos(List listadeJava) {
         this.listadeJava = listadeJava;

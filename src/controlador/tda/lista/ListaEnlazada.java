@@ -43,6 +43,12 @@ public class ListaEnlazada<E> {
         size = 0;
     }
 
+    public ListaEnlazada(Integer size) {
+        cabecera = null;
+        this.size = size;
+    }
+    
+
     /**
      * Permite ver si la lista esta vacia
      *

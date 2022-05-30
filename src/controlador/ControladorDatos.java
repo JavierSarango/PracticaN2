@@ -4,11 +4,9 @@
  */
 package controlador;
 
-import controlador.tda.lista.ListaEnlazada;
 import controlador.tda.lista.ListaEnlazadaServices;
-import controlador.tda.lista.exception.PosicionException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
 import modelo.EstructuradeDatos.TipodeDatos;
 import memoria.MemoryUtil;
 
@@ -146,8 +144,6 @@ public class ControladorDatos<E> {
         datos = nuevo;
         listaDatos.insertarAlFinal(nuevo);
         System.out.println("Arreglo de tipo " + tipo);
-//        System.out.println("Valores");
-//        listar();
         System.out.println("Tamaño en memoria: " + MemoryUtil.deepSizeOf(var) + " bits");
     }
 
@@ -160,8 +156,6 @@ public class ControladorDatos<E> {
         datos = nuevo;
         listaDatos.insertarAlFinal(nuevo);
         System.out.println("Arreglo de tipo " + tipo);
-//        System.out.println("Valores");
-//        listar();
         System.out.println("Tamaño en memoria: " + MemoryUtil.deepSizeOf(var) + " bits");
 
     }
@@ -175,8 +169,6 @@ public class ControladorDatos<E> {
         datos = nuevo;
         listaDatos.insertarAlFinal(nuevo);
         System.out.println("Arreglo de tipo " + tipo);
-//        System.out.println("Valores");
-//        listar();
         System.out.println("Tamaño en memoria: " + MemoryUtil.deepSizeOf(var) + " bits");
 
     }
@@ -190,8 +182,6 @@ public class ControladorDatos<E> {
         datos = nuevo;
         listaDatos.insertarAlFinal(nuevo);
         System.out.println("Arreglo de tipo " + tipo);
-//        System.out.println("Valores");
-//        listar();
         System.out.println("Tamaño en memoria: " + MemoryUtil.deepSizeOf(var) + " bits");
 
     }
@@ -205,8 +195,6 @@ public class ControladorDatos<E> {
         datos = nuevo;
         listaDatos.insertarAlFinal(nuevo);
         System.out.println("Arreglo de tipo " + tipo);
-//        System.out.println("Valores");
-//        listar();
         System.out.println("Tamaño en memoria: " + MemoryUtil.deepSizeOf(var) + " bits");
 
     }
@@ -220,8 +208,6 @@ public class ControladorDatos<E> {
         datos = nuevo;
         listaDatos.insertarAlFinal(nuevo);
         System.out.println("Arreglo de tipo " + tipo);
-//        System.out.println("Valores");
-//        listar();
         System.out.println("Tamaño en memoria: " + MemoryUtil.deepSizeOf(var) + " bits");
     }
 
@@ -234,8 +220,6 @@ public class ControladorDatos<E> {
         datos = nuevo;
         listaDatos.insertarAlFinal(nuevo);
         System.out.println("Arreglo de tipo " + tipo);
-//        System.out.println("Valores");
-//        listar();
         System.out.println("Tamaño en memoria: " + MemoryUtil.deepSizeOf(var) + " bits");
 
     }
@@ -249,8 +233,7 @@ public class ControladorDatos<E> {
         datos = nuevo;
         listaDatos.insertarAlFinal(nuevo);
         System.out.println("Arreglo de tipo " + tipo);
-//        System.out.println("Valores");
-//        listar();
+        ;
         System.out.println("Tamaño en memoria: " + MemoryUtil.deepSizeOf(var) + " bits");
 
     }
@@ -264,41 +247,71 @@ public class ControladorDatos<E> {
         datos = nuevo;
         listaDatos.insertarAlFinal(nuevo);
         System.out.println("Arreglo de tipo " + tipo);
-//        System.out.println("Valores");
-//        listar();
+
         System.out.println("Tamaño en memoria: " + MemoryUtil.deepSizeOf(var) + " bits");
 
     }
-//
-//    public void listar() {
-//        for (int i = 0; i < listaDatos.getSize(); i++) {
-////            System.out.print(listaDatos.obtenerDato(i).toString() + "\t");
-//            try {
-//                listaDatos.getLista().obtenerDato(i).getArreglo_string();
-//                listaDatos.getLista().imprimir();
-//            } catch (PosicionException ex) {
-//                Logger.getLogger(ControladorDatos.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            
-//        }
-//        System.out.println("");
-//
-//    }
 
-    public static void main(String args) {
-        ControladorDatos cdp = new ControladorDatos();
-        //cdp.guardarDatoInt(0);
-        String[] cadena = new String[1];
-        cdp.guardarDatoArregloString(cadena, "String");
-        System.out.println(MemoryUtil.deepSizeOf(cdp.getDatos().getArreglo_string()));
-        cadena[0] = "Hola";
-//        cadena[1] = "Mundo";
-        cdp.guardarDatoArregloString(cadena, "String");
-        System.out.println(MemoryUtil.deepSizeOf(cdp.getDatos().getArreglo_string()));
+    public void guardarListaEnlazada(ListaEnlazadaServices<E> lista, String tipo) {
+        
+        TipodeDatos nuevo = new TipodeDatos(lista);
+        nuevo.setTipo(tipo);
+        nuevo.setValor(lista.getLista());
+        nuevo.setValorMedido(MemoryUtil.deepSizeOf(lista));
+        nuevo.setUnidadMedida("bits");
+        datos = nuevo;
+//        listaDatos.insertarAlFinal(nuevo);
+        System.out.print("ListaEnlazada de tipo " + tipo+" || ");
+        System.out.println("Tamaño en memoria ListaEnlazada: " + MemoryUtil.deepSizeOf(lista) + " bits");
 
     }
 
-//    public void guardarDatoArreglo(byte[] arreglo, Object selectedItem) {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void guardarListadeJava(List listado) {
+        TipodeDatos nuevo = new TipodeDatos(listado);
+        nuevo.setTipo("No tiene tipo definido");
+        for (int i = 0; i < listado.size(); i++) {
+            nuevo.setValor(listado.get(i));            
+        }
+
+        nuevo.setValorMedido(MemoryUtil.deepSizeOf(listado));
+        nuevo.setUnidadMedida("bits");
+        datos = nuevo;
+
+        System.out.print("Lista de Java || ");
+        System.out.println("Tamaño en memoria List: " + MemoryUtil.deepSizeOf(listado) + " bits");
+
+    }
+//
+//    public static void main(String[] args) {
+//        ControladorDatos cdp = new ControladorDatos();
+//        ListaEnlazadaServices<Integer> lista;
+//        
+//        List lis = new ArrayList();
+////        System.out.println("***************Lista Enlazada declarada ***************");
+////        lista = new ListaEnlazadaServices<>();
+////        cdp.guardarListaEnlazada(lista, "Integer");
+////        System.out.println(MemoryUtil.deepSizeOf(cdp.getDatos().getListaEnlazada()));
+//        System.out.println("***************Lista Enlazada Inicializada con tamaño ***************");
+//        lista = new ListaEnlazadaServices<>();
+//        System.out.println(lista.getSize());
+//        cdp.guardarListaEnlazada(lista, "Integer");
+//        System.out.println(MemoryUtil.deepSizeOf(cdp.getDatos().getListaEnlazada()));
+////        System.out.println("***************Lista Enlazada Inicializada con valores ***************");
+////        lista.insertar(2, 0);
+////        cdp.guardarListaEnlazada(lista, "Integer");
+////        System.out.println(MemoryUtil.deepSizeOf(cdp.getDatos().getListaEnlazada()));
+////
+////        System.out.println("***************Lista de Java declarada ***************");
+////        cdp.guardarListadeJava(lis);
+////        System.out.println(MemoryUtil.deepSizeOf(cdp.getDatos().getListadeJava()));
+////        System.out.println("***************Lista Enlazada Inicializada con valores ***************");
+////        lis.add(2);
+////        lis.add(1);
+////        lis.add("Macario");
+////        lis.add("9232131");
+////        cdp.guardarListadeJava(lis);
+////        System.out.println(MemoryUtil.deepSizeOf(cdp.getDatos().getListadeJava()));
+//
 //    }
+
 }

@@ -296,5 +296,5 @@ public class ControladorDatos<E> {
         String cadenaFinal = cadena1.concat(cadena2);
         return cadenaFinal;
     }
-
+   
 }

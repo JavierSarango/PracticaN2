@@ -55,7 +55,7 @@ public class ModeloTablaDatos extends AbstractTableModel {
              
             switch (columnIndex) {
                 case 0: return dp.getTipo();
-                case 1: return dp.getValor();
+                case 1: return dp.getValor().toString();
                 case 2: return dp.getValorMedido();
                 case 3: return dp.getUnidadMedida();                
                     

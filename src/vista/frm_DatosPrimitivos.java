@@ -117,12 +117,12 @@ public class frm_DatosPrimitivos<E> extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(10, 230, 810, 240);
+        jPanel3.setBounds(10, 230, 810, 330);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Creacion de Arreglos"));
         jPanel4.setLayout(null);
@@ -169,10 +169,10 @@ public class frm_DatosPrimitivos<E> extends javax.swing.JDialog {
         jPanel5.add(jLabel4);
         jLabel4.setBounds(10, 20, 60, 16);
         jPanel5.add(txtSizeList);
-        txtSizeList.setBounds(20, 40, 124, 30);
+        txtSizeList.setBounds(100, 40, 124, 30);
 
         jPanel1.add(jPanel5);
-        jPanel5.setBounds(410, 90, 190, 90);
+        jPanel5.setBounds(410, 90, 330, 90);
 
         btnGuardarListaEnlazada.setText("Crear ListaEnlazada");
         btnGuardarListaEnlazada.addActionListener(new java.awt.event.ActionListener() {
@@ -202,12 +202,12 @@ public class frm_DatosPrimitivos<E> extends javax.swing.JDialog {
         jScrollPane2.setViewportView(txtMensajeConsola);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(10, 480, 800, 86);
+        jScrollPane2.setBounds(10, 570, 800, 60);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 830, 580);
+        jPanel1.setBounds(0, 0, 830, 640);
 
-        setSize(new java.awt.Dimension(845, 592));
+        setSize(new java.awt.Dimension(845, 679));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

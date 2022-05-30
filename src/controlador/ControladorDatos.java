@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.EstructuradeDatos.TipodeDatos;
 import memoria.MemoryUtil;
+import org.github.jamm.MemoryMeter;
 
 //import org.github.jamm.*;
 /**
@@ -87,6 +88,7 @@ public class ControladorDatos<E> {
         nuevo.setValorMedido(MemoryUtil.deepSizeOf(var));
         nuevo.setUnidadMedida("bits");
         datos = nuevo;
+        listaDatos.insertarAlFinal(nuevo);
         System.out.println("float --- " + var + " Tamaño: " + MemoryUtil.deepSizeOf(var) + " bits");
     }
 
